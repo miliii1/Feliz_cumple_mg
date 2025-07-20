@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Cumple 💖</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 50px auto;
+      animation: aparecer 1.5s ease;
+    }
+
+    h1 {
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #333;
+      font-size: 18px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .sorpresa {
+      display: none;
+      margin-top: 20px;
+      animation: aparecer 1s ease;
+    }
+
+    .sorpresa img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .mensaje {
+      font-size: 22px;
+      color: #ff4081;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Emojis que caen */
+    .emoji {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: caer 4s linear infinite;
+      opacity: 0.8;
+      z-index: 1000;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 ¡Feliz Cumple, Magalí! 🎂</h1>
+    <p>Te deseo un día lleno de amor, risas y cosas lindas. Gracias por ser tan especial en mi vida ❤️</p>
+
+    <p>Gracias por ser mi mejor amiga, hermana, consejera ❤️‍🩹.</p>
+
+    <p>Que la vida nos siga poniendo en la vida de la otra, y te voy a apoyar en todo lo que te propongas, porque de eso se trata la familia. Las considero a las dos (¡y a la otra vaga 😅!) como hermanas 🫂💖.</p>
+
+    <button id="btnSorpresa" onclick="mostrarSorpresa()">Haz clic para tu sorpresita 🎁</button>
+    <div class="sorpresa" id="sorpresa">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBUQEBIVFhUWGBkYGBgXGR0cGhgaGBgfGBkdGBgdICggGB8lGxkYITEhJSorLi4uGB8zODMsNygtLisBCgoKDg0OGxAQGy0lHyUvLy0tLTUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAQMAwgMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAEBQMGAAIHAQj/xABDEAACAQIDBAcFBgQFAwQDAAABAhEAAwQSIQUxQQYTIlFhcYGRoTKxwdHh8BQjUmKSwjNS4fEVM0OT8RYkQ2Oiw+LxFlST... (recortado por espacio)
+      <div class="mensaje">🌟 Te quiero muchísimo 💖💫</div>
+    </div>
+  </div>
+
+  <!-- Música de fondo -->
+  <audio id="musica" src="https://www.bensound.com/bensound-music/bensound-lovely.mp3"></audio>
+
+  <script>
+    function mostrarSorpresa() {
+      document.getElementById("sorpresa").style.display = "block";
+      const boton = document.getElementById("btnSorpresa");
+      boton.disabled = true;
+      boton.innerText = "🎁 ¡Sorpresa mostrada!";
+      const audio = document.getElementById("musica");
+      audio.play();
+      lanzarEmojis();
+    }
+
+    function lanzarEmojis() {
+      const emojis = ["💖", "✨", "💕", "🌸", "🎉", "🎂"];
+      for (let i = 0; i < 30; i++) {
+        const emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
